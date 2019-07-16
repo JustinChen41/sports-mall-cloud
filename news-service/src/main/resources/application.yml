@@ -1,9 +1,11 @@
 spring:
+  profiles:
+    active: prod
   application:
-    name: news-service
+    name: news
 
 server:
-  port: 8762
+  port: 8282
 
 eureka:
   client:
