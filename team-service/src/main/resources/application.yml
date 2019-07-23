@@ -2,7 +2,7 @@ spring:
   profiles:
     active: test
   application:
-    name: news
+    name: team
 
 server:
-  port: 8282
+  port: 8281
