@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * @Author: chenjianting
@@ -19,6 +20,9 @@ public class ConfigController {
     @Autowired
     private NewsServiceApi newsServiceApi;
 
+    @Autowired
+    private RestTemplate restTemplate;
+
     @RequestMapping(value = "/config")
     public boolean getTeam() {
         return openTeam;
@@ -27,5 +31,10 @@ public class ConfigController {
     @RequestMapping(value = "/feign")
     public String feignTest() {
         return newsServiceApi.getNewsConfig();
+    }
+
+    @RequestMapping(value = "/ribbon")
+    public String ribbonTest() {
+        return restTemplate.getForObject("http://news/config", String.class);
     }
 }
