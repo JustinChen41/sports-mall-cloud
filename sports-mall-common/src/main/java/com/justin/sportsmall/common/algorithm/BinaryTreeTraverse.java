@@ -18,7 +18,7 @@ public class BinaryTreeTraverse {
      * 根结点 ---> 左子树 ---> 右子树
      * @param treeNode
      */
-    static <T> void recursionBeforeOrder(TreeNode<T> treeNode) {
+    public static <T> void recursionBeforeOrder(TreeNode<T> treeNode) {
         if (treeNode == null) {
             return;
         }
@@ -36,7 +36,7 @@ public class BinaryTreeTraverse {
      * 左子树 ---> 根结点 ---> 右子树
      * @param treeNode
      */
-    static <T> void recursionInOrder(TreeNode<T> treeNode) {
+    public static <T> void recursionInOrder(TreeNode<T> treeNode) {
         if (treeNode == null) {
             return;
         }
@@ -55,7 +55,7 @@ public class BinaryTreeTraverse {
      * 左子树 ---> 右子树 ---> 根结点
      * @param treeNode
      */
-    static <T> void recursionAfterOrder(TreeNode<T> treeNode) {
+    public static <T> void recursionAfterOrder(TreeNode<T> treeNode) {
         if (treeNode == null) {
             return;
         }
