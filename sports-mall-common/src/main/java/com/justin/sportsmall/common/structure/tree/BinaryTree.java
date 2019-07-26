@@ -1,6 +1,5 @@
 package com.justin.sportsmall.common.structure.tree;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -10,8 +9,6 @@ import java.util.List;
  * @Date: 2019/7/25 10:11
  */
 public class BinaryTree<T> extends AbstractTree<T> {
-
-    public final static int CHILD_NODE_MAX_COUNT = 2;
 
     public TreeNode<T> rootNode;
 
@@ -27,11 +24,11 @@ public class BinaryTree<T> extends AbstractTree<T> {
             TreeNode<T> currentNode = rootNode;
             while (true) {
                 //子节点为空，插入左孩子
-                if (currentNode.getChildNodes() == null) {
+                if (currentNode.getLeftChildNode() == null) {
                     setLeftChildNode(currentNode, treeNode);
                     treeNodes.add(treeNode);
                     break;
-                } else if (currentNode.getChildNodes().size() < CHILD_NODE_MAX_COUNT) {
+                } else if (currentNode.getRightChildNode() == null) {
                     setRightChildNode(currentNode, treeNode);
                     treeNodes.add(treeNode);
                     break;
@@ -49,21 +46,19 @@ public class BinaryTree<T> extends AbstractTree<T> {
             rootNode = treeNode;
         } else {
             TreeNode<T> currentNode = rootNode;
-            List<TreeNode<T>> childNodes;
             while (true) {
-                childNodes = currentNode.getChildNodes();
                 if (treeNode.compareTo(currentNode) < 0) {
-                    if (childNodes == null || childNodes.get(0) != null) {
+                    if (currentNode.getLeftChildNode() == null) {
                         setLeftChildNode(currentNode, treeNode);
                         break;
                     }
-                    currentNode = childNodes.get(0);
+                    currentNode = currentNode.getLeftChildNode();
                 } else if (treeNode.compareTo(currentNode) > 0) {
-                    if (childNodes == null || childNodes.size() < CHILD_NODE_MAX_COUNT) {
+                    if (currentNode.getRightChildNode() == null) {
                         setRightChildNode(currentNode, treeNode);
                         break;
                     }
-                    currentNode = childNodes.get(CHILD_NODE_MAX_COUNT - childNodes.size());
+                    currentNode = currentNode.getRightChildNode();
                 }
             }
         }
@@ -80,21 +75,12 @@ public class BinaryTree<T> extends AbstractTree<T> {
     }
 
     private void setLeftChildNode(TreeNode<T> parentNode, TreeNode<T> childNode) {
-        List<TreeNode<T>> childNodes = new ArrayList<>();
-        childNode.setIndex(0);
         childNode.setParentNode(parentNode);
-        childNodes.add(childNode);
-        parentNode.setChildNodes(childNodes);
+        parentNode.setLeftChildNode(childNode);
     }
 
     private void setRightChildNode(TreeNode<T> parentNode, TreeNode<T> childNode) {
-        List<TreeNode<T>> childNodes = parentNode.getChildNodes();
-        if (childNodes == null) {
-            childNodes = new ArrayList<>();
-        }
-        childNode.setIndex(1);
         childNode.setParentNode(parentNode);
-        childNodes.add(childNode);
-        parentNode.setChildNodes(childNodes);
+        parentNode.setRightChildNode(childNode);
     }
 }

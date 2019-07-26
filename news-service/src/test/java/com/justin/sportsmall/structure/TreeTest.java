@@ -17,7 +17,7 @@ public class TreeTest extends NewsServiceApplicationTests {
         BinaryTree<Integer> tree = new BinaryTree<>();
         TreeNode<Integer> root = new TreeNode<>(5);
         tree.sortedInsertNode(root);
-        int[] array = {6, 7, 4, 3, 9, 2, 8, 1, 10};
+        int[] array = {2, 7, 4, 3, 9, 6, 8, 1, 10};
         for (int i = 0; i < array.length; i++) {
             System.out.println("data value: "+ array[i]);
             TreeNode<Integer> treeNode = new TreeNode<>(array[i]);

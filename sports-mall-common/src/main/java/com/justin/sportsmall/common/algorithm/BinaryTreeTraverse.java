@@ -4,8 +4,6 @@ import com.justin.sportsmall.common.structure.tree.TreeNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
-
 /**
  * 二叉树遍历算法
  * @Author: chenjianting
@@ -23,12 +21,8 @@ public class BinaryTreeTraverse {
             return;
         }
         logger.info("Before Order value: {}", treeNode.getData());
-        List<TreeNode<T>> childNodes = treeNode.getChildNodes();
-        if (childNodes == null || childNodes.size() == 0) {
-            return;
-        }
-        recursionBeforeOrder(childNodes.get(0));
-        recursionBeforeOrder(childNodes.size() == 2 ? childNodes.get(1) : null);
+        recursionBeforeOrder(treeNode.getLeftChildNode());
+        recursionBeforeOrder(treeNode.getRightChildNode());
     }
 
     /**
@@ -40,14 +34,9 @@ public class BinaryTreeTraverse {
         if (treeNode == null) {
             return;
         }
-        List<TreeNode<T>> childNodes = treeNode.getChildNodes();
-        if (childNodes == null || childNodes.size() == 0) {
-            logger.info("In Order value: {}", treeNode.getData());
-            return;
-        }
-        recursionInOrder(childNodes.get(0));
+        recursionInOrder(treeNode.getLeftChildNode());
         logger.info("In Order value: {}", treeNode.getData());
-        recursionInOrder(childNodes.size() == 2 ? childNodes.get(1) : null);
+        recursionInOrder(treeNode.getRightChildNode());
     }
 
     /**
@@ -59,13 +48,8 @@ public class BinaryTreeTraverse {
         if (treeNode == null) {
             return;
         }
-        List<TreeNode<T>> childNodes = treeNode.getChildNodes();
-        if (childNodes == null || childNodes.size() == 0) {
-            logger.info("After Order value: {}", treeNode.getData());
-            return;
-        }
-        recursionAfterOrder(childNodes.get(0));
-        recursionAfterOrder(childNodes.size() == 2 ? childNodes.get(1) : null);
+        recursionAfterOrder(treeNode.getLeftChildNode());
+        recursionAfterOrder(treeNode.getRightChildNode());
         logger.info("After Order value: {}", treeNode.getData());
     }
 }

@@ -18,7 +18,7 @@ public class TestController {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Value("${hello}")
+//    @Value("${hello}")
     private String hello;
 
     @Autowired
